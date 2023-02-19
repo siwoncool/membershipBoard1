@@ -1,0 +1,74 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+        <a href="index" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="/assets/img/logo.png" alt=""> -->
+            <h1>시원 게시판</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="index1">Blog</a></li>
+                <li><a href="bList?boardCotegery=communication">소통게시판</a></li>
+                <li class="dropdown"><a href=""><span>게시판카테고리</span> </a>
+                    <ul>
+
+                        <li><a href="bList?boardCotegery=sports">스포츠 게시판</a></li>
+
+                        </li>
+                        <li><a href="bList?boardCotegery=game">게임 게시판</a></li>
+                        <li><a href="bList?boardCotegery=life">라이프 게시판</a></li>
+                        <li><a href="bList?boardCotegery=entertainment">연애 게시판</a></li>
+                        <li><a href="bList?boardCotegery=MUSIC">음악 게시판</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="bList?boardCotegery=notice">공지사항</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+
+        <div class="position-relative">
+
+
+            <th:block th:if="${session.loginId eq null}">
+
+                <a href="mJoinForm" class="mx-2"><span>회원가입</span></a>
+                <a href="mLoginForm" class="mx-2"><span>로그인</span></a>
+
+            </th:block>
+
+
+            <th:block th:if="${session.loginId != null && session.loginId ne 'admin'}" >
+                <a href="mLogout" class="mx-2"><span>로그아웃</span></a>
+                <a th:href="|@{mView(memId=${session.loginId})}|"  class="mx-2"><span>내정보보기</span></a>
+            </th:block>
+
+            <th:block th:if="${session.loginId != null && session.loginId eq 'admin'}" >
+
+                <a href="mLogout" class="mx-2"><span>로그아웃</span></a>
+                <a href="mList" class="mx-2"><span>회원목록</span></a>
+                <a th:href="|@{mView(memId=${session.loginId})}|"><span>내정보보기</span></a>
+            </th:block>
+
+
+
+
+            <a href="#" class="mx-2 js-search-open"></a>
+
+
+            <!-- ======= Search Form ======= -->
+            <div class="search-form-wrap js-search-form-wrap">
+                <form action="search-result.html" class="search-form">
+                    <span class="icon bi-search"></span>
+                    <input type="text" placeholder="Search" class="form-control">
+                    <button class="btn js-search-close"><span class="bi-x"></span></button>
+                </form>
+            </div><!-- End Search Form -->
+
+        </div>
+
+    </div>
+
+</header><!-- End Header -->
